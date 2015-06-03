@@ -8,26 +8,49 @@
  *
  * Main module of the application.
  */
-angular
-  .module('tryMeanApp', [
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch'
-  ])
-  .config(function ($routeProvider) {
+
+var app = angular.module('tryMeanApp', ['ngRoute']);
+
+app.config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+        .when('/', {
+            templateUrl: 'views/main.html',
+            controller: 'MainCtrl'
+        })
+        .when('/about', {
+            templateUrl: 'views/about.html',
+            controller: 'AboutCtrl'
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
+});
+
+app.controller('TestCtrl', function($scope) {
+
+    $scope.test = "test";
+
+    $scope.posts = [
+        {title: 'post 1', upvotes: 5},
+        {title: 'post 2', upvotes: 4},
+        {title: 'post 3', upvotes: 2},
+        {title: 'post 4', upvotes: 1},
+        {title: 'post 5', upvotes: 5}
+    ];
+
+    $scope.addPost = function() {
+        if(!$scope.title || $scope.title==='') return;
+        $scope.posts.push({
+            title: $scope.title,
+            link: $scope.link,
+            upvotes: 0
+            });
+        $scope.title = '';
+        $scope.link = '';
+    };
+
+    $scope.incrementUpvotes = function(post){
+        post.upvotes += 1;
+    };
+
+});
