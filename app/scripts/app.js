@@ -1,32 +1,36 @@
 'use strict';
 
-/**
- * @ngdoc overview
- * @name tryMeanApp
- * @description
- * # tryMeanApp
- *
- * Main module of the application.
- */
 
-var app = angular.module('tryMeanApp', ['ngRoute']);
+var app = angular.module('tryMeanApp', ['ui.router']);
 
-app.config(function ($routeProvider) {
-    $routeProvider
-        .when('/', {
+app.config(function ($stateProvider, $urlRouterProvider) {
+    $stateProvider
+        .state('main', {
+            url: '/',
             templateUrl: 'views/main.html',
             controller: 'MainCtrl'
         })
-        .when('/about', {
+        .state('about', {
+            url: '/about',
             templateUrl: 'views/about.html',
             controller: 'AboutCtrl'
-        })
-        .otherwise({
-            redirectTo: '/'
         });
+
+    $urlRouterProvider.otherwise('home');
 });
 
-app.controller('TestCtrl', function($scope) {
+
+app.factory('posts', [function () {
+    var object = {
+        posts: []
+    };
+    return object;
+}])
+
+
+app.controller('TestCtrl', function($scope, posts) {
+
+    $scope.posts = posts.posts;
 
     $scope.test = "test";
 
@@ -54,3 +58,6 @@ app.controller('TestCtrl', function($scope) {
     };
 
 });
+
+
+
