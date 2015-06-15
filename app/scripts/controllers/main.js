@@ -2,12 +2,13 @@
 
 /**
  * @ngdoc function
- * @name tryMeanApp.controller:MainCtrl
+ * @name helloAngularjsApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the tryMeanApp
+ * Controller of the helloAngularjsApp
  */
-app.controller('MainCtrl', function ($scope) {
+angular.module('helloAngularjsApp')
+  .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

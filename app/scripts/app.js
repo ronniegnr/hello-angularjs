@@ -2,70 +2,27 @@
 
 /**
  * @ngdoc overview
- * @name tryMeanApp
+ * @name helloAngularjsApp
  * @description
- * # tryMeanApp
+ * # helloAngularjsApp
  *
  * Main module of the application.
  */
-
-var app = angular.module('tryMeanApp', ['ngRoute']);
-
-app.config(function ($routeProvider) {
+angular
+  .module('helloAngularjsApp', [
+    'ngRoute'
+  ])
+  .config(function ($routeProvider) {
     $routeProvider
-        .when('/', {
-            templateUrl: 'views/main.html',
-            controller: 'MainCtrl'
-        })
-        .when('/about', {
-            templateUrl: 'views/about.html',
-            controller: 'AboutCtrl'
-        })
-        .otherwise({
-            redirectTo: '/'
-        });
-});
-
-app.factory('posts', [function(){
-    var o = {
-        posts: [
-            {title: 'post 1', upvotes: 5},
-            {title: 'post 2', upvotes: 4},
-            {title: 'post 3', upvotes: 2},
-            {title: 'post 4', upvotes: 1},
-            {title: 'post 5', upvotes: 5}
-        ]
-    };
-    return o;
-}]);
-
-app.controller('TestCtrl', function($scope, posts) {
-    /*
-    $scope.posts = [
-        {title: 'post 1', upvotes: 5},
-        {title: 'post 2', upvotes: 4},
-        {title: 'post 3', upvotes: 2},
-        {title: 'post 4', upvotes: 1},
-        {title: 'post 5', upvotes: 5}
-    ];
-    */
-
-    $scope.addPost = function() {
-        if(!$scope.title || $scope.title==='') return;
-        $scope.posts.push({
-            title: $scope.title,
-            link: $scope.link,
-            upvotes: 0
-            });
-        $scope.title = '';
-        $scope.link = '';
-    };
-
-    $scope.incrementUpvotes = function(post){
-        post.upvotes += 1;
-    };
-
-});
-
-
-
+      .when('/', {
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
+      })
+      .when('/about', {
+        templateUrl: 'views/about.html',
+        controller: 'AboutCtrl'
+      })
+      .otherwise({
+        redirectTo: '/'
+      });
+  });
